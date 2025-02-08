@@ -1,0 +1,44 @@
+const { chromium } = require('playwright');
+
+(async () => {
+  const browser = await chromium.launch({ headless: false }); 
+  const context = await browser.newContext(); // Use browser.newContext() instead of browser.newPage()
+  const page = await context.newPage();
+
+  let screen_sizes = [
+    { device: "Desktop", width: 1910, height: 1200 }
+  ];
+
+  for (let size of screen_sizes) {
+    await page.setViewportSize({ width: size.width, height: size.height });
+    console.log(`Viewport set to: ${size.width}x${size.height}`);
+  }
+
+  // Navigate to login page
+  await page.goto('https://sasclearing.softwarealgo.com/login');
+
+  // Login process
+  await page.locator('input[name="email"]').fill('sas@softwarealgo.com');
+  await page.locator('input[name="password"]').fill('45CRyl6PsjcaA0cKgCW2@');
+  await page.getByRole('button', { name: 'Login' }).click();
+  await page.waitForTimeout(10000);
+
+  // --- Insert OTP Logic Here ---
+
+  
+  await page.getByRole('button', { name: 'Transaction' }).click();
+  await page.getByRole('link', { name: 'Activity', exact: true }).nth(1).click();
+  await page.waitForTimeout(5000);
+  await page.locator('button').filter({ hasText: 'Search' }).click();
+  await page.locator('input[name="fromDate"]').fill('2025-01-01');
+  await page.locator('button').filter({ hasText: 'Search' }).click();
+  await page.getByLabel('Correspondent').click();
+  await page.getByRole('option', { name: 'SASS' }).click();
+  await page.locator('button').filter({ hasText: 'Search' }).click(); 
+  await page.getByRole('button', { name: 'Reset', exact: true }).click();
+  await page.locator('button').filter({ hasText: 'Search' }).click();
+
+
+  await context.close();
+  await browser.close();
+})();
