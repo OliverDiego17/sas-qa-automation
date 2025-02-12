@@ -1,28 +1,22 @@
 export async function paymentOptionPage(page) {
+  await page.waitForTimeout(5000);
   await page.getByRole("button", { name: "Balance", exact: true }).click();
   await page.getByRole("link", { name: "Payment Option" }).click();
   await page.locator("button").filter({ hasText: "Search" }).click();
-  await page.getByLabel("Active").click();
-  await page.getByRole("option", { name: "Inactive" }).click();
-  await page.locator("button").filter({ hasText: "Search" }).click();
-  await page.getByLabel("Inactive").click();
+  await page.getByLabel('Active').click();
+  await page.getByRole('option', { name: 'Inactive' }).click();
+  await page.locator('button').filter({ hasText: 'Search' }).click();
+  await page.getByLabel('Inactive').click();
+  await page.getByRole('option', { name: 'Blank' }).click();  
   await page.locator("button").filter({ hasText: "Search" }).click();
   await page.getByLabel("Correspondent").click();
   await page.getByRole("option", { name: "SASS" }).click();
   await page.locator("button").filter({ hasText: "Search" }).click();
-  await page
-    .locator(
-      ".MuiGrid-root > div > div > .MuiFormControl-root > .MuiInputBase-root > .MuiSelect-root"
-    )
-    .click();
+  await page.locator(".MuiGrid-root > div > div > .MuiFormControl-root > .MuiInputBase-root > .MuiSelect-root").click();
   await page.getByRole("option", { name: "Equity" }).click();
   await page.getByLabel("Symbol").click();
   await page.getByRole("textbox", { name: "Symbol" }).fill("AAPL");
-  await page
-    .getByRole("option", { name: "AAPL Stat: A | Type: E | Cusp" })
-    .click();
-  await page.locator("button").filter({ hasText: "Search" }).click();
-  await page.getByRole("button", { name: "Clear" }).click();
+  await page.getByRole("option", { name: "AAPL Stat: A | Type: E | Cusp" }).click();
   await page.locator("button").filter({ hasText: "Search" }).click();
   await page.getByRole("button", { name: "Add New" }).click();
   await page

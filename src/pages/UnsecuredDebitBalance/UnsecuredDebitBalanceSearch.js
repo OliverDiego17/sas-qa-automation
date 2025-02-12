@@ -1,4 +1,5 @@
 export async function unsecuredDebitBalancePage(page) {
+  await page.waitForTimeout(5000);
   await page.getByRole("button", { name: "Balance", exact: true }).click();
   await page.getByRole("link", { name: "Unsecured Debit Balance" }).click();
   await page.locator("button").filter({ hasText: "Search" }).click();

@@ -1,4 +1,5 @@
 export async function trialBalancePage(page) {
+  await page.waitForTimeout(5000);
   await page.getByRole("button", { name: "Balance" }).click();
   await page.getByRole("link", { name: "Trial Balance" }).click();
   await page.locator("button").filter({ hasText: "Search" }).click();
