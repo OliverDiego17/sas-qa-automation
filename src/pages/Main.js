@@ -1,9 +1,9 @@
 import { chromium } from "playwright";
 import { loginPage } from "./Login.js";
-import { activityPage } from "./Activity.js";
-import { positionPage } from "./Position.js";
-import { balancePage } from "./Balance.js";
-import { pendingTrnsPage } from "./PendingTRNS.js";
+import { activityPage } from "./Activity/ActivitySearch.js";
+import { positionPage } from "./Position/PositionSearch.js";
+import { balancePage } from "./Balance/BalanceSearch.js";
+import { pendingTrnsPage } from "./PendingTRNS/PendingTRNSSearch.js";
 
 (async () => {
   const browser = await chromium.launch({ headless: false, slowMo: 1000 });
