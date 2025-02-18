@@ -25,6 +25,7 @@ export async function enterTrnsTest(page) {
     await page.getByRole('button', { name: 'Save', exact: true }).click();
     await page.getByRole('button', { name: 'Save', exact: true }).click();
    
+    //paki global po di ko alam pano hehe
     const notification = await page.getByText('The transaction is completed'); 
     const message = await notification.textContent();
     await notification.waitFor({ state: 'visible', timeout: 10000 });
