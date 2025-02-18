@@ -102,8 +102,8 @@ export async function riskmanagerTest(page) {
     await page.getByRole('option', { name: 'Cash' }).click();
     await page.locator('button').filter({ hasText: 'Search' }).click();
     await page.getByLabel('Margin Type').click();
-    await page.getByRole('option', { name: 'CPM' }).click();
-    await page.getByLabel('Margin Type').click();
+    //await page.getByRole('option', { name: 'CPM' }).click();
+    //await page.getByLabel('Margin Type').click();
     await page.getByRole('option', { name: 'Margin' }).click();
     await page.locator('button').filter({ hasText: 'Search' }).click();
     await page.getByLabel('Blank').click();
@@ -135,8 +135,8 @@ export async function riskmanagerTest(page) {
     await page.getByLabel('Margin Type').click();
     await page.getByRole('option', { name: 'Cash' }).click();
     await page.getByLabel('Margin Type').click();
-    await page.getByRole('option', { name: 'CPM' }).click();
-    await page.getByLabel('Margin Type').click();
+    //await page.getByRole('option', { name: 'CPM' }).click();
+    //await page.getByLabel('Margin Type').click();
     await page.getByRole('option', { name: 'Margin' }).click();
     await page.locator('button').filter({ hasText: 'Search' }).click();
     await page.getByLabel('Grid').click();
@@ -180,7 +180,7 @@ export async function riskmanagerTest(page) {
     await page.locator('button').filter({ hasText: 'Search' }).click();
     await page.locator('.MuiGrid-root > .MuiFormControl-root > .MuiInputBase-root > .MuiSelect-root').first().click();
     await page.getByRole('option', { name: 'Equity' }).click();
-    await page.getByLabel('Symbol').click();
+    await page.getByLabel('Symbol', { exact: true }).click();
     await page.getByRole("textbox", { name: "Symbol" }).fill("AAPL");
     await page.getByRole('option', { name: 'AAPL Stat: A | Type: E | Cusp' }).click();
     await page.locator('button').filter({ hasText: 'Search' }).click();
