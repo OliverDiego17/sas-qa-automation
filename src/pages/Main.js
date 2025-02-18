@@ -1,4 +1,4 @@
-import { chromium } from "playwright";
+import { chromium } from '@playwright/test';
 import { loginPage } from "./Login.js";
 import { activityPage } from "./Activity/ActivitySearch.js";
 import { positionPage } from "./Position/PositionSearch.js";
@@ -13,6 +13,8 @@ import { glBalancePage } from "./GLBalance/GLBalanceSearch.js";
 import { paymentOptionPage } from "./PaymentOption/PaymentOptionSearch.js";
 import { trialBalancePage } from "./TrialBalance/TrialBalanceSearch.js";
 import { unsecuredDebitBalancePage } from "./UnsecuredDebitBalance/UnsecuredDebitBalanceSearch.js";
+import { riskmanagerTest } from "./Test/riskmanagerTest.js";
+import { surveillanceTest } from './Test/surveillanceTest.js';
 
 (async () => {
   const browser = await chromium.launch({ headless: false, slowMo: 1000 });
@@ -26,14 +28,13 @@ import { unsecuredDebitBalancePage } from "./UnsecuredDebitBalance/UnsecuredDebi
     console.log(`Viewport set to: ${size.width}x${size.height}`);
   }
 
+ 
   await loginPage(page);
   await activityPage(page);
   await positionPage(page);
   await balancePage(page);
   await pendingTrnsPage(page);
-
   //Balance - Cash
-
   await glReportPage(page);
   await balanceSnapshotPage(page);
   await balanceSummaryReportPage(page);
@@ -43,6 +44,23 @@ import { unsecuredDebitBalancePage } from "./UnsecuredDebitBalance/UnsecuredDebi
   await paymentOptionPage(page);
   await trialBalancePage(page);
   await unsecuredDebitBalancePage(page);
+  await riskmanagerTest(page);
+  await surveillanceTest(page);
+
+ 
+ 
+
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 
   await context.close();
   await browser.close();

@@ -6,5 +6,6 @@
   "dependencies": {
     "playwright": "^1.50.1"
   },
-  "type": "module"
+  "type": "module",
+  "scripts": {}
 }
