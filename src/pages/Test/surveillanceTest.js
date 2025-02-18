@@ -170,4 +170,6 @@ await page.locator('button').filter({ hasText: 'Search' }).click();
   await page.getByRole('option', { name: 'SASS' }).click();
   await page.locator('button').filter({ hasText: 'Search' }).click();
   await page.getByTestId('MuiDataTableBodyCell-1-0').getByRole('button', { name: 'details' }).click();
+  await page.locator('.MuiBackdrop-root').click();
+  await page.getByLabel('close').click();
 }
