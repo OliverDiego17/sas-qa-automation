@@ -18,31 +18,22 @@ export async function paymentOptionPage(page) {
   await page.getByRole("textbox", { name: "Symbol" }).fill("AAPL");
   await page.getByRole("option", { name: "AAPL Stat: A | Type: E | Cusp" }).click();
   await page.locator("button").filter({ hasText: "Search" }).click();
-  await page.getByRole("button", { name: "Add New" }).click();
-  await page
-    .getByLabel("Add New Payment Option")
-    .locator("#correspondent")
-    .click();
-  await page.getByRole("option", { name: "SASS" }).click();
-  await page
-    .getByLabel("Add New Payment Option")
-    .locator("#mui-component-select-entryType")
-    .click();
-  await page.getByRole("option", { name: "Dividend" }).click();
-  await page.locator('input[name="fromDate"]').fill("2025-02-13");
-  await page.getByRole("textbox", { name: "Symbol" }).click();
-  await page.getByRole("textbox", { name: "Symbol" }).fill("AAPL");
-  await page.getByRole("option", { name: "AAPL 280229 | 037833100 |" }).click();
-  await page
-    .getByLabel("Add New Payment Option")
-    .locator("#mui-component-select-paymentOption")
-    .click();
-  await page.getByRole("option", { name: "Reinvest" }).click();
-  await page.getByRole("button", { name: "Save" }).click();
-  await page.getByLabel("Symbol").click();
-  await page.getByRole("textbox", { name: "Symbol" }).fill("AAPL");
-  await page
-    .getByRole("option", { name: "AAPL Stat: A | Type: E | Cusp" })
-    .click();
-  await page.locator("button").filter({ hasText: "Search" }).click();
+
+  //Add function
+  //await page.getByRole("button", { name: "Add New" }).click();
+  //await page.getByLabel("Add New Payment Option").locator("#correspondent").click();
+  //await page.getByRole("option", { name: "SASS" }).click();
+  //await page.getByLabel("Add New Payment Option").locator("#mui-component-select-entryType").click();
+  //await page.getByRole("option", { name: "Dividend" }).click();
+  //await page.locator('input[name="fromDate"]').fill("2025-02-13");
+  //await page.getByRole("textbox", { name: "Symbol" }).click();
+  //await page.getByRole("textbox", { name: "Symbol" }).fill("AAPL");
+  //await page.getByRole("option", { name: "AAPL 280229 | 037833100 |" }).click();
+  //await page.getByLabel("Add New Payment Option").locator("#mui-component-select-paymentOption").click();
+  //await page.getByRole("option", { name: "Reinvest" }).click();
+  //await page.getByRole("button", { name: "Save" }).click();
+  //await page.getByLabel("Symbol").click();
+  //await page.getByRole("textbox", { name: "Symbol" }).fill("AAPL");
+  //await page.getByRole("option", { name: "AAPL Stat: A | Type: E | Cusp" }).click();
+  //await page.locator("button").filter({ hasText: "Search" }).click();
 }

@@ -15,9 +15,10 @@ import { trialBalancePage } from "./TrialBalance/TrialBalanceSearch.js";
 import { unsecuredDebitBalancePage } from "./UnsecuredDebitBalance/UnsecuredDebitBalanceSearch.js";
 import { riskmanagerTest } from "./Test/riskmanagerTest.js";
 import { surveillanceTest } from './Test/surveillanceTest.js';
+import { enterTrnsTest } from './Test/enterTrnsTest.js';
 
 (async () => {
-  const browser = await chromium.launch({ headless: false, slowMo: 1000 });
+  const browser = await chromium.launch({ headless: false, slowMo: 500 });
   const context = await browser.newContext(); // Use browser.newContext() instead of browser.newPage()
   const page = await context.newPage();
 
@@ -44,8 +45,10 @@ import { surveillanceTest } from './Test/surveillanceTest.js';
   await paymentOptionPage(page);
   await trialBalancePage(page);
   await unsecuredDebitBalancePage(page);
+ 
   await riskmanagerTest(page);
   await surveillanceTest(page);
+  await enterTrnsTest(page);
 
  
  
@@ -62,6 +65,6 @@ import { surveillanceTest } from './Test/surveillanceTest.js';
  
  
 
-  await context.close();
-  await browser.close();
+  await new Promise(() => {}); 
+  
 })();
