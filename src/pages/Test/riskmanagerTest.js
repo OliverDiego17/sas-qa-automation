@@ -141,7 +141,7 @@ export async function riskmanagerTest(page) {
     await page.locator('button').filter({ hasText: 'Search' }).click();
     await page.getByLabel('Grid').click();
     await page.getByRole('option', { name: 'Collapsible' }).click();
-    await page.getByRole('button', { name: 'Ok' }).click();
+    //await page.getByRole('button', { name: 'Ok' }).click();
     await page.locator('button').filter({ hasText: 'Search' }).click();
     
     //Time And Tick
@@ -185,5 +185,5 @@ export async function riskmanagerTest(page) {
   await page.locator('button').filter({ hasText: 'Search' }).click();
   await page.getByLabel('Broker Dealer').click();
   await page.getByRole('option', { name: 'Non Broker Dealer - Customer' }).click();
-   
+  await page.locator('button').filter({ hasText: 'Search' }).click();
 }

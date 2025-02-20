@@ -3,7 +3,7 @@ export async function activityPage(page) {
   //await page.goto('https://sasclearing.softwarealgo.com/app/integration/dashboard', { waitUntil: 'networkidle' });
   await page
     .locator("button", { hasText: "Transaction" })
-    .waitFor({ state: "visible", timeout: 70000 });
+    .waitFor({ state: "visible", timeout: 120000 });
   await page.getByRole("button", { name: "Transaction" }).click();
   await page
     .getByRole("link", { name: "Activity", exact: true })
