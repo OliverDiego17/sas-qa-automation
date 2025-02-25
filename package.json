@@ -4,8 +4,11 @@
     "@types/node": "^22.13.1"
   },
   "dependencies": {
+    "@slack/web-api": "^7.8.0",
     "playwright": "^1.50.1"
   },
   "type": "module",
-  "scripts": {}
+  "scripts": {
+    "test": "playwright test"
+  }
 }

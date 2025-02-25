@@ -1,3 +1,5 @@
+import { screenshotPage } from "../../util/ScreenshotPage.js";
+
 export async function activityPage(page) {
   //REPORT ACTIVITY
   //await page.goto('https://sasclearing.softwarealgo.com/app/integration/dashboard', { waitUntil: 'networkidle' });
@@ -10,9 +12,13 @@ export async function activityPage(page) {
     .nth(1)
     .click();
   await page.locator("button").filter({ hasText: "Search" }).click();
+  const component = await page.locator("h5").allTextContents();
+  const componentText = component.join("/");
+  await screenshotPage(page, componentText);
   await page.locator('input[name="fromDate"]').fill("2020-01-01");
   await page.locator("button").filter({ hasText: "Search" }).click();
   await page.waitForTimeout(1000);
+  await screenshotPage(page, componentText);
   await page.getByLabel("Correspondent").click();
   await page.getByRole("option", { name: "SASS" }).click();
   await page.waitForTimeout(1000);
@@ -29,15 +35,19 @@ export async function activityPage(page) {
     .click();
   await page.locator("button").filter({ hasText: "Search" }).click();
   await page.waitForTimeout(1000);
+  await screenshotPage(page, componentText);
   await page.locator("#mui-component-select-type").click();
   await page.getByRole("option", { name: "Client" }).click();
   await page.locator("button").filter({ hasText: "Search" }).click();
   await page.getByLabel("Client").click();
+  await screenshotPage(page, componentText);
   await page.getByRole("option", { name: "GL" }).click();
   await page.locator("button").filter({ hasText: "Search" }).click();
+  await screenshotPage(page, componentText);
   await page.getByRole("button", { name: "Reset", exact: true }).click();
   await page.locator("button").filter({ hasText: "Search" }).click();
   await page.waitForTimeout(1000);
+  await screenshotPage(page, componentText);
 
   // await context.close();
   // await browser.close();

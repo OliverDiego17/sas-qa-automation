@@ -1,0 +1,47 @@
+import { screenshotPage } from "../../util/ScreenshotPage.js";
+
+export async function optionStrategyPage(page) {
+  await page.getByRole("button", { name: "Compliance" }).click();
+  await page.getByRole("link", { name: "Option Strategy" }).click();
+  await page.locator("button").filter({ hasText: "Search" }).click();
+  const component = await page.locator("h5").allTextContents();
+  const componentText = component.join("/");
+  await screenshotPage(page, componentText);
+  await page.getByLabel("Correspondent").click();
+  await page.getByRole("option", { name: "SASS" }).click();
+  await page.locator("button").filter({ hasText: "Search" }).click();
+  await screenshotPage(page, componentText);
+  await page.locator(".MuiSelect-root").first().click();
+  await page.getByRole("option", { name: "Option" }).click();
+  await page.locator("button").filter({ hasText: "Search" }).click();
+  await screenshotPage(page, componentText);
+  await page.getByLabel("Blank").click();
+  await page.getByRole("option", { name: "Covered" }).click();
+  await page.locator("button").filter({ hasText: "Search" }).click();
+  await screenshotPage(page, componentText);
+  await page.getByLabel("Covered").click();
+  await page.getByRole("option", { name: "Naked", exact: true }).click();
+  await page.locator("button").filter({ hasText: "Search" }).click();
+  await screenshotPage(page, componentText);
+  await page.getByLabel("Naked").click();
+  await page.getByRole("option", { name: "Naked-Spread" }).click();
+  await page.locator("button").filter({ hasText: "Search" }).click();
+  await screenshotPage(page, componentText);
+  await page.getByLabel("Naked-Spread").click();
+  await page.getByRole("option", { name: "Spread", exact: true }).click();
+  await page.locator("button").filter({ hasText: "Search" }).click();
+  await screenshotPage(page, componentText);
+  await page.getByLabel("Margin Type").click();
+  await page.getByRole("option", { name: "Cash" }).click();
+  await page.getByLabel("Margin Type").click();
+  //await page.getByRole('option', { name: 'CPM' }).click();
+  //await page.getByLabel('Margin Type').click();
+  await page.getByRole("option", { name: "Margin" }).click();
+  await page.locator("button").filter({ hasText: "Search" }).click();
+  await screenshotPage(page, componentText);
+  await page.getByLabel("Grid").click();
+  await page.getByRole("option", { name: "Collapsible" }).click();
+  //await page.getByRole('button', { name: 'Ok' }).click();
+  await page.locator("button").filter({ hasText: "Search" }).click();
+  await screenshotPage(page, componentText);
+}

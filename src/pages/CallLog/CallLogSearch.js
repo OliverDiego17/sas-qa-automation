@@ -1,0 +1,57 @@
+import { screenshotPage } from "../../util/ScreenshotPage.js";
+
+export async function callLogPage(page) {
+  await page.getByRole("button", { name: "Compliance" }).click();
+  await page.getByRole("link", { name: "Call Logs" }).click();
+  await page.locator('input[name="fromDate"]').fill("2020-01-01");
+  await page.locator("button").filter({ hasText: "Search" }).click();
+  const component = await page.locator("h5").allTextContents();
+  const componentText = component.join("/");
+
+  await screenshotPage(page, componentText);
+  await page.getByLabel("Correspondent").click();
+  await page.getByRole("option", { name: "SASS" }).click();
+  await page.locator("button").filter({ hasText: "Search" }).click();
+  await screenshotPage(page, componentText);
+  await page.getByRole("checkbox", { name: "Open" }).check();
+  await page.locator("button").filter({ hasText: "Search" }).click();
+  await screenshotPage(page, componentText);
+  await page.getByLabel("Pending").click();
+  await page.getByRole("option", { name: "Overdue" }).click();
+  await page.locator("button").filter({ hasText: "Search" }).click();
+  await screenshotPage(page, componentText);
+  await page.getByLabel("Overdue").click();
+  await page.getByRole("option", { name: "Satisfied" }).click();
+  await page.locator("button").filter({ hasText: "Search" }).click();
+  await screenshotPage(page, componentText);
+  await page.getByLabel("Satisfied").click();
+  await page.getByRole("option", { name: "Blank" }).click();
+  await page.locator("#mui-component-select-callStatusReason").click();
+  await page.getByRole("option", { name: "ACH/Wire Received" }).click();
+  await page.locator("button").filter({ hasText: "Search" }).click();
+  await screenshotPage(page, componentText);
+  await page.getByLabel("ACH/Wire Received").click();
+  await page.getByRole("option", { name: "ACH/Wire Initiated" }).click();
+  await page.locator("button").filter({ hasText: "Search" }).click();
+  await screenshotPage(page, componentText);
+  await page.getByLabel("ACH/Wire Initiated").click();
+  await page.getByRole("option", { name: "Auto Satisfy" }).click();
+  await page.locator("button").filter({ hasText: "Search" }).click();
+  await screenshotPage(page, componentText);
+  await page.getByLabel("Auto Satisfy").click();
+  await page.getByRole("option", { name: "Call Error" }).click();
+  await page.locator("button").filter({ hasText: "Search" }).click();
+  await screenshotPage(page, componentText);
+  await page.getByLabel("Call Error").click();
+  await page.getByRole("option", { name: "Liquidated" }).click();
+  await page.locator("button").filter({ hasText: "Search" }).click();
+  await screenshotPage(page, componentText);
+  await page.getByLabel("Liquidated").click();
+  await page.getByRole("option", { name: "PDT Attestation Received" }).click();
+  await page.locator("button").filter({ hasText: "Search" }).click();
+  await screenshotPage(page, componentText);
+  await page.getByLabel("PDT Attestation Received").click();
+  await page.getByRole("option", { name: "Blank" }).click();
+  await page.locator("button").filter({ hasText: "Search" }).click();
+  await screenshotPage(page, componentText);
+}
