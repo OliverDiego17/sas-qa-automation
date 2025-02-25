@@ -1,23 +1,33 @@
 import { screenshotPage } from "../../util/ScreenshotPage.js";
 
-export async function balanceSummaryReportPage(page) {
-  await page.getByRole("button", { name: "Balance", exact: true }).click();
-  await page.getByRole("link", { name: "Balance Summary" }).click();
+export async function segregationPage(page) {
+  await page.getByRole("button", { name: "Compliance" }).click();
+  await page.getByRole("link", { name: "Segregation" }).click();
+  await page.getByLabel("Per Account").click();
+  await page.getByRole("option", { name: "On the Firm Level/Symbol" }).click();
   await page.locator("button").filter({ hasText: "Search" }).click();
-
   const component = await page.locator("h5").allTextContents();
   const componentText = component.join("/");
-
   await screenshotPage(page, componentText);
-  await page.getByLabel("Settle Date").click();
-  await page.getByRole("option", { name: "Trade Date" }).click();
+  await page
+    .locator(
+      ".MuiGrid-root > .MuiFormControl-root > .MuiInputBase-root > .MuiSelect-root"
+    )
+    .first()
+    .click();
+  await page.getByRole("option", { name: "Equity" }).click();
+  await page.getByLabel("Symbol", { exact: true }).click();
+  await page.getByRole("textbox", { name: "Symbol" }).fill("aapl");
+  await page
+    .getByRole("option", { name: "AAPL Stat: A | Type: E | Cusp" })
+    .click();
   await page.locator("button").filter({ hasText: "Search" }).click();
   await screenshotPage(page, componentText);
-  await page.getByLabel("Correspondent").click();
-  await page.getByRole("option", { name: "SASS" }).click();
+  await page.getByLabel("On the Firm Level/Symbol").click();
+  await page.getByRole("option", { name: "Per Account" }).click();
   await page.locator("button").filter({ hasText: "Search" }).click();
   await screenshotPage(page, componentText);
-  await page.locator("#mui-component-select-broker").click();
+  await page.getByLabel("Blank").click();
   await page
     .getByRole("option", { name: "Broker Dealer", exact: true })
     .click();
@@ -27,14 +37,6 @@ export async function balanceSummaryReportPage(page) {
   await page
     .getByRole("option", { name: "Non Broker Dealer - Customer" })
     .click();
-  await page.locator("button").filter({ hasText: "Search" }).click();
-  await screenshotPage(page, componentText);
-  await page.getByLabel("Blank").click();
-  await page.getByRole("option", { name: "Client" }).click();
-  await page.locator("button").filter({ hasText: "Search" }).click();
-  await screenshotPage(page, componentText);
-  await page.getByLabel("Client").click();
-  await page.getByRole("option", { name: "GL" }).click();
   await page.locator("button").filter({ hasText: "Search" }).click();
   await screenshotPage(page, componentText);
 }
