@@ -1,4 +1,5 @@
 import { chromium } from "@playwright/test";
+import sql from "mssql";
 import { loginPage } from "./Login.js";
 import { activityPage } from "./Activity/ActivitySearch.js";
 import { positionPage } from "./Position/PositionSearch.js";
@@ -33,19 +34,31 @@ import { tradeParticipationPage } from "./TradeParticipation/TradeParticipationS
 import { spoofingPage } from "./Spoofing/SpoofingSearch.js";
 import { undueConcentrationPage } from "./UndueConcentration/UndueConcentrationSearch.js";
 import { washSalePage } from "./WashSale/WashSaleSearch.js";
+import si from "systeminformation";
 
-(async () => {
-  const browser = await chromium.launch({ headless: false, slowMo: 500 });
-  const context = await browser.newContext(); // Use browser.newContext() instead of browser.newPage()
+async function launchResponsiveOnMonitor(monitorIndex = 1) {
+  const graphics = await si.graphics();
+  const displays = graphics.displays;
+
+  console.log("Detected displays:", displays);
+
+  // Pick the monitor you want (0 = primary, 1 = secondary, etc.)
+  const target = displays[monitorIndex];
+  if (!target) throw new Error(`Monitor ${monitorIndex} not found`);
+
+  const { resolutionX, resolutionY, positionX, positionY } = target;
+
+  const browser = await chromium.launch({
+  headless: false,
+  args: [
+    `--window-position=${positionX},${positionY}`,
+    `--window-size=${resolutionX},${resolutionY}`
+  ]
+});
+
+// Option 1: responsive
+  const context = await browser.newContext({ viewport: null });
   const page = await context.newPage();
-
-  let screen_sizes = [{ device: "Desktop", width: 1910, height: 1100 }];
-
-  for (let size of screen_sizes) {
-    await page.setViewportSize({ width: size.width, height: size.height });
-    console.log(`Viewport set to: ${size.width}x${size.height}`);
-  }
-
   await loginPage(page);
   await activityPage(page);
   await positionPage(page);
@@ -90,4 +103,6 @@ import { washSalePage } from "./WashSale/WashSaleSearch.js";
   await enterTrnsTest(page);
 
   await new Promise(() => {});
-})();
+}
+launchResponsiveOnMonitor(1); // 1 = second monitor
+
